@@ -1,4 +1,3 @@
-import { IHeroData } from "@/interfaces/heroes";
 import Image, { StaticImageData } from "next/image";
 import ImageSpiderMan616 from "@public/spiders/spider-man-616.png"
 import ImageSpiderWoman65 from "@public/spiders/mulher-aranha-65.png"
@@ -9,6 +8,7 @@ import ImageSpiderMan928 from "@public/spiders/spider-man-928.png"
 import ImageSpiderMan14512 from "@public/spiders/sp-dr-14512.png"
 
 
+import { IHeroData } from "@/interfaces/heroes";
 
 const herosImage: Record<string, StaticImageData> = {
   "spider-man-616": ImageSpiderMan616,
