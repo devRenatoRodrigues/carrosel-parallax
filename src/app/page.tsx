@@ -4,7 +4,7 @@ import HeroesList from "@/components/HeroesList";
 import { IHeroData } from "@/interfaces/heroes";
 
 async function getHeroes(): Promise<{ data: IHeroData[] }> {
-  const response = await fetch(`http://localhost:3000/api/heroes`);
+  const response = await fetch(`https://65f48404f54db27bc021e23e.mockapi.io/api/heroes`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
