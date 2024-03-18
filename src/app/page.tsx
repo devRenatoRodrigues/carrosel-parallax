@@ -15,6 +15,10 @@ async function getHeroes(): Promise<{ data: IHeroData[] }> {
 export default async function Home() {
   const heroes = await getHeroes();
 
+  if (!heroes.data) return (
+    <h1>Failed!</h1>
+  )
+
   return (
     <main className={styles.main}>
       <HeroesList heroes={heroes.data} />
