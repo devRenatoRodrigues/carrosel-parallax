@@ -6,7 +6,7 @@ import { IHeroData } from "@/interfaces/heroes";
 async function getHeroes(): Promise<{ data: IHeroData[] }> {
   const response = await fetch(`${process.env.DOMAIN_ORIGIN}/api/heroes`);
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error(`Failed to request heroes list: ${process.env.DOMAIN_ORIGIN}`);
   }
   return response.json();
 }
