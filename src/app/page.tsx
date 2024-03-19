@@ -1,5 +1,3 @@
-'use client';
-import { useState, useEffect } from 'react';
 import styles from './page.module.scss';
 import HeroesList from '@/components/HeroesList';
 import { IHeroData } from '@/interfaces/heroes';
@@ -12,26 +10,21 @@ async function getHeroes(): Promise<{ data: IHeroData[] }> {
   return response.json();
 }
 
-export default function Home() {
-  const [heroes, setHeroes] = useState<{ data: IHeroData[] } | null>(null);
+export async function getServerSideProps() {
+  try {
+    const heroes = await getHeroes();
+    return { props: { heroes } };
+  } catch (error) {
+    console.error('Failed to fetch heroes:', error);
+    return { props: { heroes: null } };
+  }
+}
 
-  useEffect(() => {
-    async function fetchHeroes() {
-      try {
-        const heroesData = await getHeroes();
-        setHeroes(heroesData);
-      } catch (error) {
-        console.error('Failed to fetch heroes:', error);
-      }
-    }
-
-    fetchHeroes();
-  }, []);
-
+export default function Home({ heroes }: { heroes: IHeroData[] | null }) {
   return (
     <main className={styles.main}>
       {heroes ? (
-        <HeroesList heroes={heroes.data} />
+        <HeroesList heroes={heroes} />
       ) : (
         <p>Loading...</p>
       )}
